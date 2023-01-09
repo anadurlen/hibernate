@@ -20,13 +20,13 @@
 				<td>Fecha evento:</td>
 			</tr>
 			<tr>
-				<td><p:calendar id="date" value="#{question2.date}" navigator="true" mode="inline">
-					<p:ajax event="dateSelect" listener="#{question2.eventsBD}" update="mensajes"></p:ajax>
+				<td><p:calendar id="date" value="#{question.date}" navigator="true" mode="inline">
+					<p:ajax event="dateSelect" listener="#{question.eventsBD}" update="mensajes"></p:ajax>
 					</p:calendar></td>
 			</tr>
 			<tr>
-				<td><p:dataTable id="EventsTable" value="#{question2.events}"
-						var="item" border="1" bselectionMode="single" selection="#{question2.event}"
+				<td><p:dataTable id="EventsTable" value="#{question.events}"
+						var="item" border="1" bselectionMode="single" selection="#{question.event}"
 						 rowKey="#{item.eventNumber}">
 						<p:ajax event="rowSelect" listener="#{QuestionBean2.onEventSelect}" update=":formulario:EventsTable">
 						</p:ajax>
@@ -36,7 +36,7 @@
 					</p:dataTable></td>
 			</tr>
 			<tr>
-				<td><p:dataTable id="QuestionsTable" value="#{question2.questions}" var="item" rowKey="#{item.questionNumber}">
+				<td><p:dataTable id="QuestionsTable" value="#{question.questions}" var="item" rowKey="#{item.questionNumber}">
 						<f:facet name="header">Questions</f:facet>
 						<p:column headerText="Question ID">#{item.questionNumber}</p:column>
 						<p:column headerText="Question">#{item.question}</p:column>
@@ -46,7 +46,7 @@
 		<p>
 			
 		
-			<h:commandButton value="Aceptar" action="#{question2.comprobar}"/>
+			<h:commandButton value="Aceptar" action="#{question.comprobar}"/>
 
 		</p>
 		<h:messages id="mensajes" style="color:blue"></h:messages>

@@ -16,21 +16,21 @@ xmlns:p="http://primefaces.org/ui">
 <h:body>
 <h:form id="miForm">
 <td>Fecha (con PrimeFaces):</td>
-<td><p:calendar id="date" value="#{question2.date}" navigator="true" mode="inline">
-<p:ajax event="dateSelect" listener="#{question2.eventsBD}" update="mensajes"></p:ajax>
+<td><p:calendar id="date" value="#{question.date}" navigator="true" mode="inline">
+<p:ajax event="dateSelect" listener="#{question.eventsBD}" update="mensajes"></p:ajax>
 </p:calendar>
 </td>
 <table id="tabla">
 <tr>
 <td>Question:</td>
-<td><h:inputText id="question" value="#{question2.question}"> 
+<td><h:inputText id="question" value="#{question.question}"> 
 		<f:validateRegex pattern="^(([a-z]|[A-Z])+[0-9]?)$"/>
 </h:inputText></td>
 <td><h:message for="nombre" style="color:red" /></td> 
 </tr>
 <tr>
 <td>Min Bet</td>
-<td><h:inputSecret id="bet" redisplay="true" value="#{question2.bet}">
+<td><h:inputSecret id="bet" redisplay="true" value="#{question.bet}">
 		<f:validateLongRange minimum="5" maximum="10000"/> 
 		<f:ajax execute="bet" render="mensajes"/>
 </h:inputSecret></td>
@@ -39,9 +39,9 @@ xmlns:p="http://primefaces.org/ui">
 <td id="eventos">Eventos disponibles </td>
 
 <td>
-<h:selectOneMenu value="#{question2.event}" converter="omnifaces.SelectItemsConverter">
-<f:selectItems value="#{question2.events}"></f:selectItems>
-<f:ajax event="change" listener="#{question2.selectEvent}" render="mensajes"></f:ajax>
+<h:selectOneMenu value="#{question.event}" converter="omnifaces.SelectItemsConverter">
+<f:selectItems value="#{question.events}"></f:selectItems>
+<f:ajax event="change" listener="#{question.selectEvent}" render="mensajes"></f:ajax>
 </h:selectOneMenu>
  </td>
 </tr>
@@ -55,7 +55,7 @@ xmlns:p="http://primefaces.org/ui">
 
 </table>
 <p>
-<h:commandButton value="Aceptar" action="#{question2.comprobar}"/>
+<h:commandButton value="Aceptar" action="#{question.comprobar}"/>
 
  </p>
 <p>

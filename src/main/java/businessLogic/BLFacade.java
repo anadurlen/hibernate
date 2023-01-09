@@ -48,6 +48,10 @@ public List<Event> getEvents(Date date);
 	 */
 
 public List<Date> getEventsMonth(Date date);
+
+
+
+
 	
 	/**
 	 * This method calls the data access to initialize the database with some events and questions.
