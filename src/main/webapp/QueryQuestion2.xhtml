@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view>
+	<h:head><title>Query Question</title>
+
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript library="js" name="infoJavaScript.js"/>
+	
+</h:head>
+<h:body>
+	
+	<h:form id="formulario">
+		<table>
+			<tr>
+				<td>Fecha evento:</td>
+			</tr>
+			<tr>
+				<td><p:calendar id="date" value="#{question2.date}" navigator="true" mode="inline">
+					<p:ajax event="dateSelect" listener="#{question2.eventsBD}" update="mensajes"></p:ajax>
+					</p:calendar></td>
+			</tr>
+			<tr>
+				<td><p:dataTable id="EventsTable" value="#{question2.events}"
+						var="item" border="1" bselectionMode="single" selection="#{question2.event}"
+						 rowKey="#{item.eventNumber}">
+						<p:ajax event="rowSelect" listener="#{QuestionBean2.onEventSelect}" update=":formulario:EventsTable">
+						</p:ajax>
+						<f:facet name="header">Eventos</f:facet>
+						<p:column headerText="Evento ID">#{item.eventNumber}</p:column>
+						<p:column headerText="Descripción evento">#{item.description}</p:column>
+					</p:dataTable></td>
+			</tr>
+			<tr>
+				<td><p:dataTable id="QuestionsTable" value="#{question2.questions}" var="item" rowKey="#{item.questionNumber}">
+						<f:facet name="header">Questions</f:facet>
+						<p:column headerText="Question ID">#{item.questionNumber}</p:column>
+						<p:column headerText="Question">#{item.question}</p:column>
+					</p:dataTable></td>
+			</tr>
+		</table>
+		<p>
+			
+		
+			<h:commandButton value="Aceptar" action="#{question2.comprobar}"/>
+
+		</p>
+		<h:messages id="mensajes" style="color:blue"></h:messages>
+	</h:form>
+</h:body>
+</f:view>
+</html>

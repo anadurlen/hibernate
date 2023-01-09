@@ -1,0 +1,66 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets" 
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+<f:view>
+<h:head><title>Create Question</title>
+<h:outputStylesheet library="css" name="style.css" />
+<h:outputScript library="js" name="infoJavaScript.js"/>
+
+</h:head>
+
+
+<h:body>
+<h:form id="miForm">
+<td>Fecha (con PrimeFaces):</td>
+<td><p:calendar id="date" value="#{question2.date}" navigator="true" mode="inline">
+<p:ajax event="dateSelect" listener="#{question2.eventsBD}" update="mensajes"></p:ajax>
+</p:calendar>
+</td>
+<table id="tabla">
+<tr>
+<td>Question:</td>
+<td><h:inputText id="question" value="#{question2.question}"> 
+		<f:validateRegex pattern="^(([a-z]|[A-Z])+[0-9]?)$"/>
+</h:inputText></td>
+<td><h:message for="nombre" style="color:red" /></td> 
+</tr>
+<tr>
+<td>Min Bet</td>
+<td><h:inputSecret id="bet" redisplay="true" value="#{question2.bet}">
+		<f:validateLongRange minimum="5" maximum="10000"/> 
+		<f:ajax execute="bet" render="mensajes"/>
+</h:inputSecret></td>
+</tr>
+<tr>
+<td id="eventos">Eventos disponibles </td>
+
+<td>
+<h:selectOneMenu value="#{question2.event}" converter="omnifaces.SelectItemsConverter">
+<f:selectItems value="#{question2.events}"></f:selectItems>
+<f:ajax event="change" listener="#{question2.selectEvent}" render="mensajes"></f:ajax>
+</h:selectOneMenu>
+ </td>
+</tr>
+<tr>
+<h:messages id="mensajes" style="color:blue"/>
+
+</tr>
+<tr>
+
+</tr>
+
+</table>
+<p>
+<h:commandButton value="Aceptar" action="#{question2.comprobar}"/>
+
+ </p>
+<p>
+</p>
+</h:form>
+</h:body>
+</f:view>
+</html>
